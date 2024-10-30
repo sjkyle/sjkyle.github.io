@@ -1,0 +1,66 @@
+/* assets/styles.css */
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+  }
+  
+  header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 4px solid #3E8E41;
+  }
+  
+  header h1 {
+    margin: 0;
+  }
+  
+  header nav {
+    margin-top: 0.5rem;
+  }
+  
+  header nav a {
+    color: white;
+    margin: 0 0.75rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  header nav a:hover {
+    text-decoration: underline;
+  }
+  
+  main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+    padding: 1rem;
+    border-top: 4px solid #4CAF50;
+    margin-top: 2rem;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
