@@ -1,6 +1,6 @@
-<!-- _includes/notice-board.html -->
-<section class="notice-board notice-board--desktop">
-  <h2>공지사항</h2>
+<!-- _includes/notice-accordion.html -->
+<details class="notice-board notice-board--accordion">
+  <summary>공지사항</summary>
   {% if site.data.notices and site.data.notices.size > 0 %}
   <ul class="notice-list">
     {% for notice in site.data.notices %}
@@ -13,4 +13,4 @@
   {% else %}
   <p class="empty">등록된 공지사항이 없습니다.</p>
   {% endif %}
-</section>
+</details>

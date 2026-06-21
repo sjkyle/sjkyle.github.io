@@ -88,7 +88,7 @@ main.page-home {
   margin: 0 auto;
 }
 
-.board-grid {
+.content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
@@ -96,11 +96,29 @@ main.page-home {
   margin-bottom: 1.5rem;
 }
 
-.board-grid .notice-board,
-.board-grid .news-board {
+.content-grid .notice-board,
+.content-grid .news-board {
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
+}
+
+.content-grid .notice-board--desktop {
+  order: 1;
+}
+
+.content-grid .news-board {
+  order: 2;
+}
+
+.content-grid .coupang-banner--desktop {
+  order: 3;
+  grid-column: 1 / -1;
+}
+
+.content-grid .notice-board--accordion,
+.content-grid .coupang-banner--mobile {
+  display: none;
 }
 
 
@@ -211,8 +229,9 @@ footer p {
   margin: 0.6rem 0 0;
 }
 
-/* Collapsible market accordion (tablet/mobile) */
-.market-dashboard--accordion {
+/* Collapsible accordions (market indicators / notice board on tablet/mobile) */
+.market-dashboard--accordion,
+.notice-board--accordion {
   display: none;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -220,7 +239,8 @@ footer p {
   padding: 0 1rem;
 }
 
-.market-dashboard--accordion summary {
+.market-dashboard--accordion summary,
+.notice-board--accordion summary {
   cursor: pointer;
   padding: 0.85rem 0;
   font-weight: 700;
@@ -229,17 +249,20 @@ footer p {
   list-style: none;
 }
 
-.market-dashboard--accordion summary::-webkit-details-marker {
+.market-dashboard--accordion summary::-webkit-details-marker,
+.notice-board--accordion summary::-webkit-details-marker {
   display: none;
 }
 
-.market-dashboard--accordion summary::after {
+.market-dashboard--accordion summary::after,
+.notice-board--accordion summary::after {
   content: "\25BE";
   float: right;
   color: var(--text-muted);
 }
 
-.market-dashboard--accordion[open] summary::after {
+.market-dashboard--accordion[open] summary::after,
+.notice-board--accordion[open] summary::after {
   content: "\25B4";
 }
 
@@ -251,33 +274,50 @@ footer p {
   padding-bottom: 1rem;
 }
 
-/* Tablet / mobile: notice above news, banner below, market indicators
-   collapsed into an accordion just above the footer. */
+.notice-board--accordion .notice-list {
+  padding-bottom: 0.85rem;
+}
+
+/* Tablet / mobile: market indicators (collapsed) right under the header,
+   then a collapsed notice accordion, banner, and news, all tightly spaced. */
 .coupang-banner--mobile {
   display: none;
 }
 
 @media (max-width: 900px) {
-  .board-grid {
-    grid-template-columns: 1fr;
+  .market-dashboard.market-dashboard--accordion {
+    display: block;
+    margin-bottom: 0.5rem;
   }
 
   .market-dashboard--top {
     display: none;
   }
 
-  .market-dashboard.market-dashboard--accordion {
-    display: block;
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
     margin-bottom: 0;
   }
 
-  .coupang-banner--desktop {
+  .content-grid .notice-board--desktop,
+  .content-grid .coupang-banner--desktop {
     display: none;
   }
 
-  .coupang-banner.coupang-banner--mobile {
+  .content-grid .notice-board--accordion {
     display: block;
-    margin-bottom: 1.5rem;
+    order: 1;
+  }
+
+  .content-grid .coupang-banner--mobile {
+    display: block;
+    order: 2;
+    margin-bottom: 0;
+  }
+
+  .content-grid .news-board {
+    order: 3;
   }
 }
 
@@ -406,7 +446,7 @@ footer p {
 
 .coupang-disclosure {
   margin: 0;
-  font-size: 0.65rem;
+  font-size: 0.5rem;
   color: var(--text-muted);
   line-height: 1.2;
 }

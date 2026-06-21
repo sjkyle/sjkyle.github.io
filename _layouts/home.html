@@ -2,13 +2,14 @@
 layout: default
 ---
 {% include market-dashboard.html %}
+{% include market-accordion.html %}
 <div class="home-main">
   {{ content }}
-  <div class="board-grid">
+  <div class="content-grid">
     {% include notice-board.html %}
+    {% include notice-accordion.html %}
     {% include news-list.html %}
+    {% include coupang-banner.html %}
+    {% include coupang-banner-mobile.html %}
   </div>
-  {% include coupang-banner.html %}
-  {% include coupang-banner-mobile.html %}
-  {% include market-accordion.html %}
 </div>
