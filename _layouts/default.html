@@ -4,18 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title | default: "My Stylish Jekyll Site" }}</title>
-  <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
 
   {% include header.html %}
 
-  <main>
+  <main class="page-{{ page.layout }}">
     {{ content }}
   </main>
 
   {% include footer.html %}
+
+  {% if page.layout == "home" %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="{{ '/assets/js/market-charts.js' | relative_url }}"></script>
+  {% endif %}
 
 </body>
 </html>

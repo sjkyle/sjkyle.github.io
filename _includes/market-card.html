@@ -1,0 +1,20 @@
+<!-- _includes/market-card.html -->
+{% assign s = include.series %}
+<div class="market-card" data-history='{{ s.data | jsonify }}'>
+  <div class="market-card-head">
+    <span class="market-card-label">{{ s.label }}</span>
+    {% if s.key == "fear_greed" %}
+    <span class="market-card-value">{{ s.current }}</span>
+    {% else %}
+    <span class="market-card-value {% if s.change_pct >= 0 %}up{% else %}down{% endif %}">
+      {{ s.current }} ({{ s.change_pct }}%)
+    </span>
+    {% endif %}
+  </div>
+  {% if s.key == "fear_greed" %}
+  <p class="market-card-sub">{{ s.value_label }}</p>
+  {% endif %}
+  <div class="market-chart-wrap">
+    <canvas class="market-chart"></canvas>
+  </div>
+</div>

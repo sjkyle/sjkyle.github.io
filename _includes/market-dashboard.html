@@ -1,0 +1,15 @@
+<!-- _includes/market-dashboard.html -->
+{% assign market = site.data.market %}
+<section class="market-dashboard market-dashboard--top">
+  <h2>시장지표</h2>
+  {% if market %}
+  <div class="market-grid">
+    {% for s in market.series %}
+      {% include market-card.html series=s %}
+    {% endfor %}
+  </div>
+  <p class="market-asof">업데이트 : {{ market.as_of }}</p>
+  {% else %}
+  <p class="empty">시장지표 데이터가 없습니다.</p>
+  {% endif %}
+</section>

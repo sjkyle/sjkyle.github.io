@@ -1,66 +1,412 @@
-/* assets/styles.css */
+/* assets/style.css */
+
+:root {
+  --bg: #f3f4f5;
+  --surface: #ffffff;
+  --text: #1c1c1c;
+  --text-muted: #6b6e72;
+  --border: #e2e3e5;
+  --brand: #20242b;
+  --up: #c0392b;
+  --down: #1565c0;
+}
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Apple SD Gothic Neo", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  line-height: 1.6;
+  background-color: var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+/* Header / masthead */
+.site-header {
+  background: var(--surface);
+  border-bottom: 2px solid var(--brand);
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--brand);
+  color: #fff;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-right: 0.6rem;
+}
+
+.site-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Main containers */
+main {
+  padding: 1.5rem 1.25rem 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+main.page-home {
+  max-width: 1100px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-bottom: 0;
+}
+
+.home-intro {
+  margin: 0 0 1.25rem;
+  color: var(--text-muted);
+}
+
+.home-main {
+  margin: 0 auto;
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 1.5rem;
+}
+
+.board-grid .notice-board,
+.board-grid .news-board {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+footer {
+  background-color: var(--brand);
+  color: #c7c9cc;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+main.page-home + footer {
+  margin-top: 0;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* Market dashboard */
+.market-dashboard {
+  margin-bottom: 0.875rem;
+}
+
+.market-dashboard h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem;
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 800px) {
+  .market-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    line-height: 1.6;
-    background-color: #f9f9f9;
+}
+
+@media (max-width: 480px) {
+  .market-grid {
+    grid-template-columns: 1fr;
   }
-  
-  header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 4px solid #3E8E41;
+}
+
+.market-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.8rem 0.95rem;
+}
+
+.market-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.market-card-label {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.market-card-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.market-card-value.up {
+  color: var(--up);
+}
+
+.market-card-value.down {
+  color: var(--down);
+}
+
+.market-card-sub {
+  margin: 0.1rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.market-chart-wrap {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.market-chart {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.market-asof {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin: 0.6rem 0 0;
+}
+
+/* Collapsible market accordion (tablet/mobile) */
+.market-dashboard--accordion {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0 1rem;
+}
+
+.market-dashboard--accordion summary {
+  cursor: pointer;
+  padding: 0.85rem 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  list-style: none;
+}
+
+.market-dashboard--accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.market-dashboard--accordion summary::after {
+  content: "\25BE";
+  float: right;
+  color: var(--text-muted);
+}
+
+.market-dashboard--accordion[open] summary::after {
+  content: "\25B4";
+}
+
+.market-dashboard--accordion .market-grid {
+  margin-top: 0.25rem;
+}
+
+.market-dashboard--accordion .market-asof {
+  padding-bottom: 1rem;
+}
+
+/* Tablet / mobile: notice above news, banner below, market indicators
+   collapsed into an accordion just above the footer. */
+.coupang-banner--mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .board-grid {
+    grid-template-columns: 1fr;
   }
-  
-  header h1 {
-    margin: 0;
+
+  .market-dashboard--top {
+    display: none;
   }
-  
-  header nav {
-    margin-top: 0.5rem;
+
+  .market-dashboard.market-dashboard--accordion {
+    display: block;
+    margin-bottom: 0;
   }
-  
-  header nav a {
-    color: white;
-    margin: 0 0.75rem;
-    text-decoration: none;
-    font-weight: bold;
+
+  .coupang-banner--desktop {
+    display: none;
   }
-  
-  header nav a:hover {
-    text-decoration: underline;
+
+  .coupang-banner.coupang-banner--mobile {
+    display: block;
+    margin-bottom: 1.5rem;
   }
-  
-  main {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 2rem auto;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  footer {
-    background-color: #333;
-    color: #ccc;
-    text-align: center;
-    padding: 1rem;
-    border-top: 4px solid #4CAF50;
-    margin-top: 2rem;
-  }
-  
-  footer p {
-    margin: 0;
-    font-size: 0.9rem;
-  }
-  
+}
+
+/* Notice board / news board */
+.notice-board,
+.news-board {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.notice-board h2,
+.news-board h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+  border-bottom: 2px solid var(--brand);
+  padding-bottom: 0.4rem;
+}
+
+.notice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notice-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.notice-list li:last-child {
+  border-bottom: none;
+}
+
+.notice-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.news-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.news-card h3 {
+  margin-top: 0;
+}
+
+.news-card h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.news-card-summary {
+  margin: 0.5rem 0;
+  padding-left: 1.2rem;
+}
+
+.news-more {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.news-archive-title {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.news-archive {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-archive li a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* News digest post */
+.news-digest .news-item {
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+}
+
+.news-digest .news-item:last-child {
+  border-bottom: none;
+}
+
+.news-summary {
+  padding-left: 1.2rem;
+}
+
+.news-source {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.news-back {
+  margin-top: 1.5rem;
+}
+
+/* Coupang Partners banner placeholder */
+.coupang-banner {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.coupang-banner iframe {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.coupang-disclosure {
+  margin: 0;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}

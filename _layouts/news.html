@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<article class="news-digest">
+  <h2>{{ page.date | date: "%Y년 %m월 %d일" }} 주요 뉴스</h2>
+  {% for article in page.articles %}
+  <div class="news-item">
+    <h3>{{ article.title }}</h3>
+    <ul class="news-summary">
+      {% for line in article.summary %}
+      <li>{{ line }}</li>
+      {% endfor %}
+    </ul>
+    <p class="news-source">출처: <a href="{{ article.source_url }}" target="_blank" rel="noopener">{{ article.source }}</a></p>
+  </div>
+  {% endfor %}
+  <p class="news-back"><a href="{{ '/' | relative_url }}">&larr; 메인으로</a></p>
+</article>

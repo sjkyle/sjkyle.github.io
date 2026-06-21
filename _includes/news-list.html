@@ -1,0 +1,27 @@
+<!-- _includes/news-list.html -->
+<section class="news-board">
+  <h2>오늘의 뉴스</h2>
+  {% assign latest = site.posts | first %}
+  {% if latest %}
+  <article class="news-card">
+    <h3><a href="{{ latest.url | relative_url }}">{{ latest.date | date: "%Y-%m-%d" }} 세계·경제 이슈</a></h3>
+    <ul class="news-card-summary">
+      {% for article in latest.articles limit: 3 %}
+      <li>{{ article.title }}</li>
+      {% endfor %}
+    </ul>
+    <a class="news-more" href="{{ latest.url | relative_url }}">전체 보기 &rarr;</a>
+  </article>
+  {% else %}
+  <p class="empty">등록된 뉴스가 없습니다.</p>
+  {% endif %}
+
+  {% if site.posts.size > 1 %}
+  <h3 class="news-archive-title">지난 뉴스</h3>
+  <ul class="news-archive">
+    {% for post in site.posts limit: 5 offset: 1 %}
+    <li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%Y-%m-%d" }} 뉴스</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
